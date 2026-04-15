@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mini-HTTP Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .log-container {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            background-color: #f9f9f9;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mini-HTTP Server Control</h1>
+        <div>
+            <button class="button" onclick="toggleServer()">启动服务</button>
+            <div id="status" class="status"></div>
+        </div>
+        <div class="log-container">
+            <h3>实时日志:</h3>
+            <pre id="log"></pre>
+        </div>
+    </div>
+
+    <script>
+        let serverRunning = false;
+
+        // 初始化
+        window.onload = function() {
+            updateLog();
+            setInterval(updateLog, 2000);
+        };
+
+        // 切换服务状态
+        function toggleServer() {
+            window.go.main.App.StartServer().then(function(result) {
+                document.getElementById('status').innerHTML = result;
+                document.getElementById('status').className = 'status success';
+                
+                // 更新按钮文本
+                serverRunning = !serverRunning;
+                const button = document.querySelector('.button');
+                button.textContent = serverRunning ? '关闭服务' : '启动服务';
+            });
+        }
+
+        // 更新日志
+        function updateLog() {
+            window.go.main.App.GetLog().then(function(log) {
+                document.getElementById('log').textContent = log;
+                // 滚动到底部
+                const logContainer = document.querySelector('.log-container');
+                logContainer.scrollTop = logContainer.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>

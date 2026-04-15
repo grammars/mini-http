@@ -1,0 +1,13 @@
+{
+  "name": "Mini-HTTP Server",
+  "outputfilename": "mini-http-gui",
+  "frontend": {
+    "dir": "./frontend",
+    "devserver": {
+      "url": "http://localhost:3000"
+    }
+  },
+  "build": {
+    "outputdir": "./bin"
+  }
+}

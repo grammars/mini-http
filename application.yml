@@ -1,0 +1,9 @@
+port: 80
+log:
+  folder: ./logs/
+  pattern: 客户端${IP}通过${METHOD}方法访问了${URL}
+vhost:
+  - path: /apple/news/
+    folder: E:\gp\html\新闻\
+  - path: /apple/dev/
+    folder: E:\gp\html\开发\工具包\
