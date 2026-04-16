@@ -15,19 +15,6 @@
       "problemMatcher": ["$go"]
     },
     {
-      "label": "build-gui",
-      "type": "shell",
-      "command": "go",
-      "args": [
-        "build",
-        "-o",
-        "mini-http-gui.exe",
-        "cmd/gui/main.go"
-      ],
-      "group": "build",
-      "problemMatcher": ["$go"]
-    },
-    {
       "label": "tidy",
       "type": "shell",
       "command": "go",

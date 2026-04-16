@@ -1,6 +1,6 @@
 port: 80
 log:
-  folder: ./logs/
+  folder: ./.logs/
   pattern: 客户端${IP}通过${METHOD}方法访问了${URL}
 vhost:
   - path: /apple/news/
